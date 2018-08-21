@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liqian5365.github.io/"/>
-  <updated>2018-08-20T12:35:05.679Z</updated>
+  <updated>2018-08-21T06:34:10.163Z</updated>
   <id>https://liqian5365.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react PureComponent</title>
+    <link href="https://liqian5365.github.io/2018/08/21/react-PureComponent/"/>
+    <id>https://liqian5365.github.io/2018/08/21/react-PureComponent/</id>
+    <published>2018-08-21T03:30:19.000Z</published>
+    <updated>2018-08-21T06:34:10.163Z</updated>
+    
+    <content type="html"><![CDATA[<p>读文笔记：原创来自掘金。</p><h1 id="1-为什么使用？"><a href="#1-为什么使用？" class="headerlink" title="1.为什么使用？"></a>1.为什么使用？</h1><p>PureComponent使用非常的方便，可以减少不必要的#render#次数。来提高性能，还可以减少shouldComponentUpdate函数，节省了一些代码量。</p><h1 id="2-原理"><a href="#2-原理" class="headerlink" title="2.原理"></a>2.原理</h1><p>组件的更新条件就是 state或者 props发生了改变。<br>如果都没有发生改变的话render是不会被触发。<br>这样就会减少 Virtual DOM的生成和对比过程，达到提升性能的目的。<br>因为react帮助我们做了一层浅比较、<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (this._compositeType === CompositeTypes.PureClass) &#123;</span><br><span class="line">  shouldUpdate = !shallowEqual(prevProps, nextProps)</span><br><span class="line">  || !shallowEqual(inst.state, nextState);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>而 shallowEqual 又做了什么呢？会比较 Object.keys(state | props) 的长度是否一致，每一个 key是否两者都有，并且是否是一个引用，也就是只比较了第一层的值，确实很浅，所以深层的嵌套数据是对比不出来的。</p><h1 id="3-使用指南"><a href="#3-使用指南" class="headerlink" title="3.使用指南"></a>3.使用指南</h1><ul><li>易变数据不能使用一个引用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  const &#123; items &#125; = this.state;</span><br><span class="line">  items.pop();</span><br><span class="line">  this.setState(&#123; items &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>应该改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleClick = () =&gt; &#123;</span><br><span class="line">  const &#123; items &#125; = this.state;</span><br><span class="line">  items.pop();</span><br><span class="line">  this.setState(&#123; items: [].concat(items) &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>不变数据使用一个引用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt; MyInput onChange=&#123;e =&gt; this.props.update(e.target.value)&#125; /&gt;</span><br><span class="line">//或者</span><br><span class="line">update(e) &#123;</span><br><span class="line">  this.props.update(e.target.value)</span><br><span class="line">&#125;</span><br><span class="line">render() &#123;</span><br><span class="line">  return &lt; MyInput onChange=&#123;this.update.bind(this)&#125; /&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>由于每次 render 操作 MyInput 组件的 onChange 属性都会返回一个新的函数，由于引用不一样，所以父组件的 render 也会导致 MyInput 组件的 render，即使没有任何改动，所以需要尽量避免这样的写法，最好这样写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">update = (e) =&gt; &#123;</span><br><span class="line">  this.props.update(e.target.value)</span><br><span class="line">&#125;</span><br><span class="line">render() &#123;</span><br><span class="line">  return &lt; MyInput onChange=&#123;this.update&#125; /&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>复杂状态与简单状态不要共用一个组件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  return (&lt; div&gt;</span><br><span class="line">    &lt; ul&gt;</span><br><span class="line">      &#123;this.state.items.map((i, k) =&gt; &lt; li key=&#123;k&#125;&gt; &#123;...&#125;&lt; /li&gt;)&#125;</span><br><span class="line">    &lt; /ul&gt;</span><br><span class="line">    &lt; input value=&#123;this.state.value&#125; onChange=&#123;this.change&#125; /&gt;</span><br><span class="line">  &lt; /div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>输入框的值可能经常变动，它会给列表带来必然的diff操作，那么就把input抽出成一个单独的PUreComponent组件。</p><p>与shouldComponentUpdate共存</p><p>如果 PureComponent 里有 shouldComponentUpdate 函数的话，直接使用 shouldComponentUpdate 的结果作为是否更新的依据，没有shouldComponentUpdate 函数的话，才会去判断是不是 PureComponent ，是的话再去做 shallowEqual浅比较。</p><h1 id="PureComponent真正起作用的，只是在一些纯展示组件上"><a href="#PureComponent真正起作用的，只是在一些纯展示组件上" class="headerlink" title="PureComponent真正起作用的，只是在一些纯展示组件上"></a>PureComponent真正起作用的，只是在一些纯展示组件上</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;读文笔记：原创来自掘金。&lt;/p&gt;
+&lt;h1 id=&quot;1-为什么使用？&quot;&gt;&lt;a href=&quot;#1-为什么使用？&quot; class=&quot;headerlink&quot; title=&quot;1.为什么使用？&quot;&gt;&lt;/a&gt;1.为什么使用？&lt;/h1&gt;&lt;p&gt;PureComponent使用非常的方便，可以减少不
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>canvas生成图片采坑</title>
