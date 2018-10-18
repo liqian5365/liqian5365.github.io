@@ -189,12 +189,23 @@
 <p>1.prototype: 函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型。每一个对象都会从原型继承属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person = new Person();</span><br><span class="line">console.log(person.__proto__ === Person.prototype); // true</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person === Person.prototype.constructor); // true</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person = new Person();</span><br><span class="line"></span><br><span class="line">console.log(person.__proto__ == Person.prototype) // true</span><br><span class="line">console.log(Person.prototype.constructor == Person) // true</span><br><span class="line">// 顺便学习一个ES5的方法,可以获得对象的原型</span><br><span class="line">console.log(Object.getPrototypeOf(person) === Person.prototype) // true</span><br></pre></td></tr></table></figure>
-<p>继承一位置复制操作，但是js默认并不会复制对象的属性，相反，js只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数。</p>
+<p>继承意味着复制操作，但是js默认并不会复制对象的属性，相反，js只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数。</p>
+<p>构造函数,原型和实例的关系:<br>每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.<br>因为好奇，所以一步一步的在看react的源码。<br>好的东西设计思路都是非常的巧妙。<br>共勉。<br>保持好奇心和学习的热情才能驱动自己不断的更新自己</p>
+<p>JSX到React.createElement()</p>
+<p>react同级节点 添加唯一的key在性能上非常的大。<br>同级节点移动的算法。<br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a></p>
+<p>箭头函数使用时注意点：<br>1。函数体内的this对象就是定义时所在的对象，而不是使用时所在的对象。<br>2.不可以当做构造函数  不能使用new命令<br>3.不可以使用arguments对象。可以用rest参数代替。<br>4.不可以使用yield命令。箭头函数不能用作Generator函数。<br>this对象的指向是可变的，但是在箭头函数中，它是固定的。</p>
+<p>map 不能跳出循环！！！！！！！！！！<br>表示自己真的是很愚蠢，现在才知道这个东西。</p>
+<p>金额加逗号<br>num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, “,”)<br>1000000 =&gt; 1,000,000</p>
+<p>bind call apply  三个方法相同点都是改变this的指向<br>区别点在于 bind返回的是一个函数 需要手动去调用</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2018/09/25/前端面试基础/" style="float: left;">
+        ← 前端面试基础
+    </a>
     
     
     <a class="pull-right" href="/2018/08/21/react-PureComponent/">
