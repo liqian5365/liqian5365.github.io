@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liqian5365.github.io/"/>
-  <updated>2018-10-18T11:11:30.089Z</updated>
+  <updated>2018-11-12T07:03:41.572Z</updated>
   <id>https://liqian5365.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetCode</title>
+    <link href="https://liqian5365.github.io/2018/11/12/leetCode/"/>
+    <id>https://liqian5365.github.io/2018/11/12/leetCode/</id>
+    <published>2018-11-12T06:55:17.000Z</published>
+    <updated>2018-11-12T07:03:41.572Z</updated>
+    
+    <content type="html"><![CDATA[<p>没事刷下leetCode，复习一下数据结构和算法基础。<br>先从简单的来起。<br>1.奇偶排序数组<br>给定一个非负整数数组 A，返回一个由 A 的所有偶数元素组成的数组，后面跟 A 的所有奇数元素。<br>你可以返回满足此条件的任何数组作为答案。<br>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,1,2,4]</span><br><span class="line">输出：[2,4,3,1]</span><br><span class="line">输出 [4,2,3,1]，[2,4,1,3] 和 [4,2,1,3] 也会被接受。</span><br></pre></td></tr></table></figure></p><p>我的理解：题目意思是将数组中偶数奇数分类，偶数放前面，奇数放后面。<br>数组左右指针分别指向头尾，一次遍历就可以完成。<br>具体代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var sortArrayByParity = function(A) &#123;</span><br><span class="line">    let p = 0 ,q = A.length-1</span><br><span class="line">    while(p&lt;q) &#123;</span><br><span class="line">        if(A[p] %2 === 0 &amp;&amp; A[q] %2 === 1) &#123;</span><br><span class="line">            p++</span><br><span class="line">            q--</span><br><span class="line">            continue</span><br><span class="line">        &#125; else if(A[p] %2 === 1 &amp;&amp; A[q]% 2=== 0) &#123;</span><br><span class="line">            let temp = A[p]</span><br><span class="line">            A[p] = A[q]</span><br><span class="line">            A[q] = temp</span><br><span class="line">            p++</span><br><span class="line">            q--</span><br><span class="line">            continue</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            p++</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return A</span><br><span class="line">&#125;;</span><br><span class="line">sortArrayByParity([2,4,5,8,7,10,14,16,18,25,34])</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;没事刷下leetCode，复习一下数据结构和算法基础。&lt;br&gt;先从简单的来起。&lt;br&gt;1.奇偶排序数组&lt;br&gt;给定一个非负整数数组 A，返回一个由 A 的所有偶数元素组成的数组，后面跟 A 的所有奇数元素。&lt;br&gt;你可以返回满足此条件的任何数组作为答案。&lt;br&gt;示例：&lt;br
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>react 16.3新特性</title>
