@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>js-notes | 时光不等人</title>
+  <title>Archives: 2019/3 | 时光不等人</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -169,110 +169,69 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2018-09-10T03:47:58.000Z" itemprop="datePublished">
-          2018-09-10
-      </time>
-    
-</span>
-                <h1>js-notes</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/tomorrow.jpeg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>变幻人生是避无可避。</p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>1.数组的拷贝<br>array.concat()<br>array.slice()<br>以上两个返回数组的拷贝数组，注意是一个新的数组，不是指向<br>年纪大了，有些东西需要看几遍才能理解。<br>有点可怕了。</p>
-<p>看react源码前复习一下 原型链等基础知识。</p>
-<p>1.prototype: 函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型。每一个对象都会从原型继承属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person = new Person();</span><br><span class="line">console.log(person.__proto__ === Person.prototype); // true</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person === Person.prototype.constructor); // true</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person = new Person();</span><br><span class="line"></span><br><span class="line">console.log(person.__proto__ == Person.prototype) // true</span><br><span class="line">console.log(Person.prototype.constructor == Person) // true</span><br><span class="line">// 顺便学习一个ES5的方法,可以获得对象的原型</span><br><span class="line">console.log(Object.getPrototypeOf(person) === Person.prototype) // true</span><br></pre></td></tr></table></figure>
-<p>继承意味着复制操作，但是js默认并不会复制对象的属性，相反，js只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数。</p>
-<p>构造函数,原型和实例的关系:<br>每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.<br>因为好奇，所以一步一步的在看react的源码。<br>好的东西设计思路都是非常的巧妙。<br>共勉。<br>保持好奇心和学习的热情才能驱动自己不断的更新自己</p>
-<p>JSX到React.createElement()</p>
-<p>react同级节点 添加唯一的key在性能上非常的大。<br>同级节点移动的算法。<br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a></p>
-<p>箭头函数使用时注意点：<br>1。函数体内的this对象就是定义时所在的对象，而不是使用时所在的对象。<br>2.不可以当做构造函数  不能使用new命令<br>3.不可以使用arguments对象。可以用rest参数代替。<br>4.不可以使用yield命令。箭头函数不能用作Generator函数。<br>this对象的指向是可变的，但是在箭头函数中，它是固定的。</p>
-<p>map 不能跳出循环！！！！！！！！！！<br>表示自己真的是很愚蠢，现在才知道这个东西。</p>
-<p>金额加逗号<br>num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, “,”)<br>1000000 =&gt; 1,000,000</p>
-<p>bind call apply  三个方法相同点都是改变this的指向<br>区别点在于 bind返回的是一个函数 需要手动去调用</p>
-<p>for in  循环只读取对象的键名</p>
-<p>promise调用resolve 和reject 并不会终结Promise的参数函数的执行<br>Promise在resolve语句后面，再抛出错误，不会被捕获，等于没有抛出，因为Promise的状态一旦改变，就永久保持该状态了， 不会再变了。</p>
-<p>async 函数返回的是一个Promise对象。也就是说async的作用就是输出一个</p>
-<h2 id="react-采坑点"><a href="#react-采坑点" class="headerlink" title="react 采坑点"></a>react 采坑点</h2><p>1.JSX做表达式判断的时候，需要强制转为boolean类型。<br>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const b = 0;</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &#123;</span><br><span class="line">      !!b &amp;&amp; &lt;div&gt;这是一段文本&lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="如果不使用-b-进行强制数据类型，会在页面输出0"><a href="#如果不使用-b-进行强制数据类型，会在页面输出0" class="headerlink" title="如果不使用 !!b 进行强制数据类型，会在页面输出0"></a>如果不使用 !!b 进行强制数据类型，会在页面输出0</h2><p>2.汉字加英文或者数字的时候设置行高，数字或者英文会掉下来，和汉字不居中。解决办法是ios设置字体：‘PingFangSC-Regular’<br>RN渐变组件  渐变的坐标从左上角开始</p>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    <a class="pull-left" href="/2018/09/25/前端面试基础/" style="float: left;">
-        ← 前端面试基础
-    </a>
-    
-    
-    <a class="pull-right" href="/2018/08/21/react-PureComponent/">
-        react PureComponent →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
 
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2019/03/12/如何让你的网页更丝滑/">如何让你的网页更丝滑</a></h4>
+                            
+                            <p><time datetime="2019-03-12T02:22:06.000Z"><a href="/2019/03/12/如何让你的网页更丝滑/">2019-03-12</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
+        </div>
+    </div>
+</section> 
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>昨日的青空，随少年挥手消失在人海之中。</p>
+        </div>
+    </div>
+</section>
       
 <!-- ============================ Footer =========================== -->
 

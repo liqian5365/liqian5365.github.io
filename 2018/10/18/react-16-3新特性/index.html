@@ -184,9 +184,36 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>react 16.3新特性。<br>多多关注新的东西。<br>componentWillMount  即将废除  ，使用componentDidMount    作为替代<br>componentWillUpdate  即将废除  ，使用componentDidUpdate  作为替代<br>componentWillReceiveProps  即将废除   使用  static  getDerivedStateFromProps 作为替代</p>
-<p>getDerivedStateFromProps  静态方法，不能访问this关键字，静态即前面有static的修饰<br>更新state的话只需要返回新的状态，return出去就可以，不需要this.setState(),如果不需要更新状态，返回null就可以了。而且返回机制和setstate一样，只需要返回需要更新的状态就可以，其他的状态保留即可。<br>注意点：要在构造函数里面初始化状态。<br>如果同时定义了 getDerivedStateFromProps 和 componentWillReceiveProps，只有 getDerivedStateFromProps 会被调用，同时 React 还会打印出警告信息。<br>还有一种情况就是，当状态发生变化的时候需要执行回调，这时候你就可以用 componentDidUpdate。</p>
-<p>##StrictMode<br>Strict mode 是新加入的组件，旨在引导你遵循最佳实践。把需要进行约束的组件簇放在它的下面就完事了</p>
+      		<h2 id="react-16-3新特性。"><a href="#react-16-3新特性。" class="headerlink" title="react 16.3新特性。"></a>react 16.3新特性。</h2><p>多多关注新的东西。<br>componentWillMount  即将废除  ，使用componentDidMount    作为替代<br>componentWillUpdate  即将废除  ，使用componentDidUpdate  作为替代<br>componentWillReceiveProps  即将废除   使用  static  getDerivedStateFromProps 作为替代</p>
+<p>getDerivedStateFromProps  静态方法，不能访问this关键字，静态即前面有static的修饰<br>更新state的话只需要返回新的状态，return出去就可以，不需要this.setState(),如果不需要更新状态，返回null就可以了。而且返回机制和setstate一样，只需要返回需要更新的状态就可以，其他的状态保留即可。<br>注意点：要在构造函数里面初始化状态。<br>由于componentWillMount/ UNSAFE_componentWillMount是在render之前调用，所以就算在这个方法中调用setState也不会触发重新渲染（re-render）<br>如果同时定义了 getDerivedStateFromProps 和 componentWillReceiveProps，只有 getDerivedStateFromProps 会被调用，同时 React 还会打印出警告信息。<br>还有一种情况就是，当状态发生变化的时候需要执行回调，这时候你就可以用 componentDidUpdate。</p>
+<p>##StrictMode<br>Strict mode 是新加入的组件，旨在引导你遵循最佳实践。把需要进行约束的组件簇放在它的下面就完事了<br>react 生命周期分为三个阶段名分别是：</p>
+<ol>
+<li>挂载阶段</li>
+<li>更新阶段</li>
+<li>卸载阶段</li>
+</ol>
+<hr>
+<h2 id="1-挂载阶段"><a href="#1-挂载阶段" class="headerlink" title="1.挂载阶段"></a>1.挂载阶段</h2><p>也就是组件的初始化阶段，将我们的组件插入到DOM中，<strong>只会发生一次</strong><br>这个阶段的生命周期函数</p>
+<ul>
+<li>constructor</li>
+<li>getDerivedStateFromProps</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+<hr>
+<hr>
+<h2 id="2-更新阶段"><a href="#2-更新阶段" class="headerlink" title="2.更新阶段"></a>2.更新阶段</h2><p>当组件的props发生变化，或调用setState方法， forceUpdate方法<br>这个阶段的生命周期函数调用有</p>
+<ul>
+<li>getDerivedStateFromProps</li>
+<li>shouldComponentUpdate</li>
+<li>render</li>
+<li>getSnapshotBeforeUpdate</li>
+<li>componentDidpdate</li>
+</ul>
+<hr>
+<h2 id="3-卸载阶段"><a href="#3-卸载阶段" class="headerlink" title="3.卸载阶段"></a>3.卸载阶段</h2><p>componentWillUnMount()  组件卸载方法里面不要再写setState()方法，因为不会再出发render函数<br>在这里主要做一些定时器的清楚，内存的回收</p>
+<hr>
+<h2 id="如何优雅的写串行请求"><a href="#如何优雅的写串行请求" class="headerlink" title="如何优雅的写串行请求"></a>如何优雅的写串行请求</h2><hr>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
