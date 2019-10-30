@@ -81,9 +81,9 @@
                 <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
                 <ul class="sb-submenu">
                     
-                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                        <li><a href="/" target="_BLANK" class="animsition-link">js</a></li>
                     
-                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">journey</a></li>
                     
                 </ul>
             </li>
@@ -220,6 +220,21 @@
 <p>Symbol与JSON.stringify()<br>当使用JSON.strIngify()的时候，symbol值作为键的属性会被完全忽略<br>symbol无法被for in 遍历到</p>
 <p>promise的缺点：<br>1.无法取消，一旦新建就会立刻执行，无法中途取消。<br>2.如果不设置回调函数，Promise内部抛出的错误就不会反应到外部<br>3.当处于pending状态时，无法得知目前进展到哪一个阶段，是刚开始还是即将完成。</p>
 <p>正则表达式：<br>*、+ 限定符都是贪婪匹配，会尽可能多的匹配文字，在他们的后面加上一个?就可以实现非贪婪或最小匹配</p>
+<hr>
+<p>两个大数相加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function sumStrings(a, b) &#123;</span><br><span class="line">    var res = &apos;&apos;, c=0;</span><br><span class="line">    a = a.split(&apos;&apos;)</span><br><span class="line">    b = b.split(&apos;&apos;)</span><br><span class="line">    while(a.length || b.length || c) &#123;</span><br><span class="line">        c += ~~a.pop() + ~~b.pop()</span><br><span class="line">        res = c % 10 + res</span><br><span class="line">        console.log(res)</span><br><span class="line">        c = c &gt; 9</span><br><span class="line">    &#125;</span><br><span class="line">    return res.replace(/!0+/, &apos;&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>object.seal()<br>Object.seal() 方法可以让一个对象密封，并返回被密封后的对象。密封对象将会阻止向对象添加新的属性，并且会将所有已有属性的可配置性（configurable）置为不可配置（false），即不可修改属性的描述或删除属性。但是可写性描述（writable）为可写（true）的属性的值仍然可以被修改。</p>
+<hr>
+<p>##手写Promise</p>
+<p>new 操作符经历的步骤：<br>1.创建一个对象。<br>2、将构造函数的作用域赋值给新对象，这时this指向这个新的对象<br>3.执行构造函数中的代码。<br>4.返回新对象。</p>
+<p>BFC:<br>BFC格式化上下文，是一个独立的渲染区域，让出于BFC内部的元素和外部的元素相互隔离，使内外元素的定位互不影响。<br>如何产生BFC：<br>display: inline-block<br>position: absolute/ fixed</p>
+<p>link和import的区别：<br>@import是css提供的语法规则，只有导入样式表的作用，link是html提供的标签，不仅可以加载css文件，还可以定义RSS，rel连接属性等<br>加载页面的时候，link标签引入的css同时被加载，@import引入的css将在页面加载完毕后被加载</p>
+<p>http缺点：<br>1、通信使用明文（不加密），内容可能会被窃听<br>2、不验证通信方的身份就可能遭遇文庄<br>3、无法证明报文完整性，可能已经遭到篡改<br>http2的特点：<br>二进制分帧层<br>多路复用<br>头部压缩<br>服务器端推送</p>
+<p>XSS：跨站脚本攻击<br>是一种注入脚本式攻击。<br>XSS攻击通常会发生在以下情况：<br>1、想一个web app中输入含有一些不良代码的内容，通常是一段含有http请求的代码<br>2、这些内容包含在发给其他用户的动态内容之中，而且这些内容还没有经过校验<br>他们通常的方式是:<br>1、向攻击者发送包括诸如cookie或者其他会话信息的私有数据<br>2、攻击者篡改页面的内容<br>3、在用户的机器上，以含有漏洞的网站为幌子，执行其他恶意的操作<br>分类：<br>存储型和反射型 还有DOM-based型<br>存储型：将恶意脚本永久的保存在目标服务器上的攻击方式，如存储在数据库，消息论坛，访问日志，评论内容等。<br>反射型：是当用户点击一个恶意链接或者提交一个表单，或者进入一个恶意网站时，注入脚本进入被攻击者的网站。<br>DOM-Based型：指攻击者利用原生JavaScript代码篡改客户端的DOM结构，导致用户操作执行了“意外”的动作。<br>XSS防范原则：<br>永远不要把不受信任的数据插入到原本允许JavaScript可以放置的地方。<br>在想元素中插入不受信任的HTML代码之前一定要进行转义<br>在用不受信任的数据向JavaScript代码赋值前，一定要进行转义<br>在将不受信任的数据作为css属性插入到文当前一定要进行转义<br>在向html的URL参数插入将不受信任的数据前，一定要将进行转义</p>
+<p>http三次握手，四次拜拜<br>为什么三次握手：为了保证服务端能接收到客户端的信息并能作出正确的应答而进行前两次握手，<br>为了保证客户端能够接收到服务端的信息并能作出正确的应答而进行后两次握手。</p>
+<p>https: 原理 对称加密+非对称加密+ CA认证</p>
+<p>for…of循环<br>允许遍历一个含有Iterator接口的数据结构并且返回各项的值。<br>和for…in区别：<br>1、for…of只能用在可迭代对象上，获取的是迭代器返回的value值，for…in可以获取所有对象的键名<br>2.for…in会遍历对象的整个原型链，性能非常差不推荐使用，而for…of只遍历当前对象不会遍历它的原型链。<br>3.对于数组的遍历，for…in会返回数组中所有可枚举的属性，包括原型链上可枚举的属性，for…of只返回数组的下标对应的属性。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
