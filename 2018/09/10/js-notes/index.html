@@ -235,6 +235,24 @@
 <p>http三次握手，四次拜拜<br>为什么三次握手：为了保证服务端能接收到客户端的信息并能作出正确的应答而进行前两次握手，<br>为了保证客户端能够接收到服务端的信息并能作出正确的应答而进行后两次握手。</p>
 <p>https: 原理 对称加密+非对称加密+ CA认证</p>
 <p>for…of循环<br>允许遍历一个含有Iterator接口的数据结构并且返回各项的值。<br>和for…in区别：<br>1、for…of只能用在可迭代对象上，获取的是迭代器返回的value值，for…in可以获取所有对象的键名<br>2.for…in会遍历对象的整个原型链，性能非常差不推荐使用，而for…of只遍历当前对象不会遍历它的原型链。<br>3.对于数组的遍历，for…in会返回数组中所有可枚举的属性，包括原型链上可枚举的属性，for…of只返回数组的下标对应的属性。</p>
+<p>前端路由：<br>1、通过hash实现前端路由<br>改变url的hash值是不会刷新页面的。因此可以通过hash来实现前端路由，从而实现无刷新的效果，hash属性位于location对象中，在页面中可以通过window.location.hash=”edit”来<br>实现改变当前的url的hash值。<br>hashchange事件可以监听hash的变化通过监听hash值改变时，输出一个HashChangeEvent<br>有了监听事件，且改变hash页面不刷新，我们就可以在监听事件的回调函数中，执行我们展示和隐藏不同UI显示的功能，从而实现前端的路由。<br>hash的缺点：<br>搜索引擎对带有hash的页面不友好。<br>带有hash的页面内难以追踪用户行为。</p>
+<p>2.通过history实现前端路由<br>HTML5的history接口，history对象是一个底层接口，不继承任何接口，history接口允许我们操作浏览器会话历史记录。</p>
+<p>history的pushState和</p>
+<p>event loop<br>js是单线程的，所有的同步任务都会在主线程中执行<br>主线程之外，还有一个任务队列，每当有一个异步任务有了结果，就会往任务队列里塞一个事件<br>当主线程中的任务，都执行完之后，系统会依次读取任务队列里的事件，与之相应的异步任务进入主线程，开始执行。<br>异步任务之间，会存在差异，所以他们执行的优先级也会有区别。大致分为 微任务  比如 Promise MutationObserve 和 宏任务 比如 setTimeout setInterval I/O等 同一次事件循环中，微任务永远在宏任务之前执行<br>主线程会不断重复上面的步骤 知道执行完所有的任务</p>
+<p>css3中 transform: transslateZ(0) 的作用是： GPU加速，优化前端性能</p>
+<p>2.列举三种禁止浏览器缓存的头字段，并写出响应的设置值<br>  1）expires: 告诉浏览器把回送的资源缓存多长时间，-1或者0是不缓存。 简要： 添加Expires头能有效的利用浏览器的缓存能力来改善页面的性能，能在后续的页面中有效避免很多<br>  不必要的的http请求。web服务器使用expires头来告诉web客户端它可以使用一个组件的当前副本，知道指定的时间为止。<br>  例如：Expires：Thu，15 Apr 2010 20：00：00 GMT; 他告诉浏览器缓存有效性持续到2010年4月15日为止，在这个时间之内相同的请求使用缓存，这个时间之外使用http请求。<br>  2）Cache-Control：no-cache Cathe-Control：max-age=315360000<br>  3）Pragma：no-cache</p>
+<p>3.精确获取页面元素位置的方式有哪些<br>getBoundingClientRect()方法</p>
+<p>再加上滚动和距离可以获得绝对为止。 document.documentElement.scrollLeft</p>
+<p>Array.from()  函数<br>用来将其他对象转换成数组，其他对象的要求是：<br>1、部署了iterator接口的对象，比如Set Map Array<br>2、类数组对象（有length属性）</p>
+<p>in 操作符 ：The in operator returns true if the specified property is in the specified object or its prototype chain.</p>
+<p>普通函数和箭头函数的区别:<br>1/箭头函数没有prototy（原型）,所以箭头函数本身没有this<br>2.箭头函数的this指向在定义的时候继承自外层第一个普通函数的this<br>3.箭头函数不能直接修改this指向<br>使用new调用箭头函数会报错<br>箭头函数不支持new.target new.target是ES6新引入的属性，普通函数如果通过new调用，new.target会返回该函数的引用。<br>这个属性主要用于确定构造函数是否为new调用的。<br>4.箭头函数不支持重命名函数参数，普通函数是支持的。<br>箭头函数对于普通函数语法更简洁优雅。<br>箭头函数都是匿名函数，并且都不用写function只有一个参数的时候可以省略括号<br>简化回调函数，让回调函数更优雅</p>
+<p>箭头函数的注意事项和不适用场景：</p>
+<p>总结：<br>普通函数和箭头函数的区别：</p>
+<p>箭头函数没有prototype(原型)，所以箭头函数本身没有this<br>箭头函数的this在定义的时候继承自外层第一个普通函数的this。<br>如果箭头函数外层没有普通函数，严格模式和非严格模式下它的this都会指向window(全局对象)<br>箭头函数本身的this指向不能改变，但可以修改它要继承的对象的this。<br>箭头函数的this指向全局，使用arguments会报未声明的错误。<br>箭头函数的this指向普通函数时,它的argumens继承于该普通函数<br>使用new调用箭头函数会报错，因为箭头函数没有constructor<br>箭头函数不支持new.target<br>箭头函数不支持重命名函数参数,普通函数的函数参数支持重命名<br>箭头函数相对于普通函数语法更简洁优雅</p>
+<p>箭头函数的注意事项及不适用场景<br>箭头函数的注意事项：</p>
+<p>箭头函数一条语句返回对象字面量，需要加括号<br>箭头函数在参数和箭头之间不能换行<br>箭头函数的解析顺序相对||靠前</p>
+<p>不适用</p>
+<p>场景：箭头函数的this意外指向和代码的可读性。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
