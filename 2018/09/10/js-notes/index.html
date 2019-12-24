@@ -185,22 +185,26 @@
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<p>1.数组的拷贝<br>array.concat()<br>array.slice()<br>以上两个返回数组的拷贝数组，注意是一个新的数组，不是指向<br>年纪大了，有些东西需要看几遍才能理解。<br>有点可怕了。</p>
-<p>看react源码前复习一下 原型链等基础知识。</p>
-<p>1.prototype: 函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型。每一个对象都会从原型继承属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person = new Person();</span><br><span class="line">console.log(person.__proto__ === Person.prototype); // true</span><br></pre></td></tr></table></figure></p>
+<h2 id="看react源码前复习一下-原型链等基础知识。"><a href="#看react源码前复习一下-原型链等基础知识。" class="headerlink" title="看react源码前复习一下 原型链等基础知识。"></a>看react源码前复习一下 原型链等基础知识。</h2><p>1.prototype: 函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型。每一个对象都会从原型继承属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person = new Person();</span><br><span class="line">console.log(person.__proto__ === Person.prototype); // true</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person === Person.prototype.constructor); // true</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person = new Person();</span><br><span class="line"></span><br><span class="line">console.log(person.__proto__ == Person.prototype) // true</span><br><span class="line">console.log(Person.prototype.constructor == Person) // true</span><br><span class="line">// 顺便学习一个ES5的方法,可以获得对象的原型</span><br><span class="line">console.log(Object.getPrototypeOf(person) === Person.prototype) // true</span><br></pre></td></tr></table></figure>
 <p>继承意味着复制操作，但是js默认并不会复制对象的属性，相反，js只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数。</p>
 <p>构造函数,原型和实例的关系:<br>每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.<br>因为好奇，所以一步一步的在看react的源码。<br>好的东西设计思路都是非常的巧妙。<br>共勉。<br>保持好奇心和学习的热情才能驱动自己不断的更新自己</p>
 <p>JSX到React.createElement()</p>
 <p>react同级节点 添加唯一的key在性能上非常的大。<br>同级节点移动的算法。<br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a></p>
-<p>箭头函数使用时注意点：<br>1。函数体内的this对象就是定义时所在的对象，而不是使用时所在的对象。<br>2.不可以当做构造函数  不能使用new命令<br>3.不可以使用arguments对象。可以用rest参数代替。<br>4.不可以使用yield命令。箭头函数不能用作Generator函数。<br>this对象的指向是可变的，但是在箭头函数中，它是固定的。</p>
-<p>map 不能跳出循环！！！！！！！！！！<br>表示自己真的是很愚蠢，现在才知道这个东西。</p>
-<p>金额加逗号<br>num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, “,”)<br>1000000 =&gt; 1,000,000</p>
-<p>bind call apply  三个方法相同点都是改变this的指向<br>区别点在于 bind返回的是一个函数 需要手动去调用</p>
+<h2 id="箭头函数使用时注意点："><a href="#箭头函数使用时注意点：" class="headerlink" title="箭头函数使用时注意点："></a>箭头函数使用时注意点：</h2><ul>
+<li>函数体内的this对象就是定义时所在的对象，而不是使用时所在的对象。</li>
+<li>不可以当做构造函数  不能使用new命令</li>
+<li>不可以使用arguments对象。可以用rest参数代替。</li>
+<li>不可以使用yield命令。箭头函数不能用作Generator函数。</li>
+<li>this对象的指向是可变的，但是在箭头函数中，它是固定的。</li>
+</ul>
+<h2 id="map-不能跳出循环！！！！！！！！！！"><a href="#map-不能跳出循环！！！！！！！！！！" class="headerlink" title="map 不能跳出循环！！！！！！！！！！"></a>map 不能跳出循环！！！！！！！！！！</h2><p>表示自己真的是很愚蠢，现在才知道这个东西。</p>
+<h2 id="金额加逗号"><a href="#金额加逗号" class="headerlink" title="金额加逗号"></a>金额加逗号</h2><p>num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, “,”)<br>1000000 =&gt; 1,000,000</p>
+<h3 id="bind-call-apply-三个方法相同点都是改变this的指向"><a href="#bind-call-apply-三个方法相同点都是改变this的指向" class="headerlink" title="bind call apply  三个方法相同点都是改变this的指向"></a>bind call apply  三个方法相同点都是改变this的指向</h3><p>区别点在于 bind返回的是一个函数 需要手动去调用</p>
 <p>for in  循环只读取对象的键名</p>
-<p>promise调用resolve 和reject 并不会终结Promise的参数函数的执行<br>Promise在resolve语句后面，再抛出错误，不会被捕获，等于没有抛出，因为Promise的状态一旦改变，就永久保持该状态了， 不会再变了。</p>
-<p>async 函数返回的是一个Promise对象。也就是说async的作用就是输出一个</p>
-<h2 id="react-采坑点"><a href="#react-采坑点" class="headerlink" title="react 采坑点"></a>react 采坑点</h2><p>1.JSX做表达式判断的时候，需要强制转为boolean类型。<br>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const b = 0;</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &#123;</span><br><span class="line">      !!b &amp;&amp; &lt;div&gt;这是一段文本&lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="promise调用resolve-和reject-并不会终结Promise的参数函数的执行"><a href="#promise调用resolve-和reject-并不会终结Promise的参数函数的执行" class="headerlink" title="promise调用resolve 和reject 并不会终结Promise的参数函数的执行"></a>promise调用resolve 和reject 并不会终结Promise的参数函数的执行</h3><p>Promise在resolve语句后面，再抛出错误，不会被捕获，等于没有抛出，因为Promise的状态一旦改变，就永久保持该状态了， 不会再变了。</p>
+<h3 id="async-函数返回的是一个Promise对象。也就是说async的作用就是输出一个"><a href="#async-函数返回的是一个Promise对象。也就是说async的作用就是输出一个" class="headerlink" title="async 函数返回的是一个Promise对象。也就是说async的作用就是输出一个"></a>async 函数返回的是一个Promise对象。也就是说async的作用就是输出一个</h3><h2 id="react-采坑点"><a href="#react-采坑点" class="headerlink" title="react 采坑点"></a>react 采坑点</h2><p>1.JSX做表达式判断的时候，需要强制转为boolean类型。<br>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const b = 0;</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &#123;</span><br><span class="line">      !!b &amp;&amp; &lt;div&gt;这是一段文本&lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="如果不使用-b-进行强制数据类型，会在页面输出0"><a href="#如果不使用-b-进行强制数据类型，会在页面输出0" class="headerlink" title="如果不使用 !!b 进行强制数据类型，会在页面输出0"></a>如果不使用 !!b 进行强制数据类型，会在页面输出0</h2><p>2.汉字加英文或者数字的时候设置行高，数字或者英文会掉下来，和汉字不居中。解决办法是ios设置字体：‘PingFangSC-Regular’<br>RN渐变组件  渐变的坐标从左上角开始</p>
 <p>不同对象在底层都表示为二进制，在JavaScript中二进制前三位都为0的会被判断为Object类型，null的二进制全为0，自然前三位也是0，所以执行typeof时会返回’object’<br>typeof 一个未声明的变量，不会报错，而是会返回undefined</p>
 <h2 id="数组forEach-map-filter-find-sort-some-易错点整理"><a href="#数组forEach-map-filter-find-sort-some-易错点整理" class="headerlink" title="数组forEach map filter find sort some 易错点整理"></a>数组forEach map filter find sort some 易错点整理</h2><p>1.forEach 可以改变数组自身，没有返回值，中途不能用常规操作跳出循环，可以用抛出异常的方式，但是并不推荐。<br>注意，不一定改变自身数组，主要是看数组中元素是值类型还是引用类型（当数组中元素是值类型，forEach绝对不会改变数组；当是引用类型，则可以改变数组）</p>
@@ -234,13 +238,12 @@
 <p>XSS：跨站脚本攻击<br>是一种注入脚本式攻击。<br>XSS攻击通常会发生在以下情况：<br>1、想一个web app中输入含有一些不良代码的内容，通常是一段含有http请求的代码<br>2、这些内容包含在发给其他用户的动态内容之中，而且这些内容还没有经过校验<br>他们通常的方式是:<br>1、向攻击者发送包括诸如cookie或者其他会话信息的私有数据<br>2、攻击者篡改页面的内容<br>3、在用户的机器上，以含有漏洞的网站为幌子，执行其他恶意的操作<br>分类：<br>存储型和反射型 还有DOM-based型<br>存储型：将恶意脚本永久的保存在目标服务器上的攻击方式，如存储在数据库，消息论坛，访问日志，评论内容等。<br>反射型：是当用户点击一个恶意链接或者提交一个表单，或者进入一个恶意网站时，注入脚本进入被攻击者的网站。<br>DOM-Based型：指攻击者利用原生JavaScript代码篡改客户端的DOM结构，导致用户操作执行了“意外”的动作。<br>XSS防范原则：<br>永远不要把不受信任的数据插入到原本允许JavaScript可以放置的地方。<br>在想元素中插入不受信任的HTML代码之前一定要进行转义<br>在用不受信任的数据向JavaScript代码赋值前，一定要进行转义<br>在将不受信任的数据作为css属性插入到文当前一定要进行转义<br>在向html的URL参数插入将不受信任的数据前，一定要将进行转义</p>
 <p>http三次握手，四次拜拜<br>为什么三次握手：为了保证服务端能接收到客户端的信息并能作出正确的应答而进行前两次握手，<br>为了保证客户端能够接收到服务端的信息并能作出正确的应答而进行后两次握手。</p>
 <p>https: 原理 对称加密+非对称加密+ CA认证</p>
-<p>for…of循环<br>允许遍历一个含有Iterator接口的数据结构并且返回各项的值。<br>和for…in区别：<br>1、for…of只能用在可迭代对象上，获取的是迭代器返回的value值，for…in可以获取所有对象的键名<br>2.for…in会遍历对象的整个原型链，性能非常差不推荐使用，而for…of只遍历当前对象不会遍历它的原型链。<br>3.对于数组的遍历，for…in会返回数组中所有可枚举的属性，包括原型链上可枚举的属性，for…of只返回数组的下标对应的属性。</p>
-<p>前端路由：<br>1、通过hash实现前端路由<br>改变url的hash值是不会刷新页面的。因此可以通过hash来实现前端路由，从而实现无刷新的效果，hash属性位于location对象中，在页面中可以通过window.location.hash=”edit”来<br>实现改变当前的url的hash值。<br>hashchange事件可以监听hash的变化通过监听hash值改变时，输出一个HashChangeEvent<br>有了监听事件，且改变hash页面不刷新，我们就可以在监听事件的回调函数中，执行我们展示和隐藏不同UI显示的功能，从而实现前端的路由。<br>hash的缺点：<br>搜索引擎对带有hash的页面不友好。<br>带有hash的页面内难以追踪用户行为。</p>
+<h2 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h2><p>允许遍历一个含有Iterator接口的数据结构并且返回各项的值。<br>和for…in区别：<br>1、for…of只能用在可迭代对象上，获取的是迭代器返回的value值，for…in可以获取所有对象的键名<br>2.for…in会遍历对象的整个原型链，性能非常差不推荐使用，而for…of只遍历当前对象不会遍历它的原型链。<br>3.对于数组的遍历，for…in会返回数组中所有可枚举的属性，包括原型链上可枚举的属性，for…of只返回数组的下标对应的属性。</p>
+<h2 id="前端路由："><a href="#前端路由：" class="headerlink" title="前端路由："></a>前端路由：</h2><p>1、通过hash实现前端路由<br>改变url的hash值是不会刷新页面的。因此可以通过hash来实现前端路由，从而实现无刷新的效果，hash属性位于location对象中，在页面中可以通过window.location.hash=”edit”来<br>实现改变当前的url的hash值。<br>hashchange事件可以监听hash的变化通过监听hash值改变时，输出一个HashChangeEvent<br>有了监听事件，且改变hash页面不刷新，我们就可以在监听事件的回调函数中，执行我们展示和隐藏不同UI显示的功能，从而实现前端的路由。<br>hash的缺点：<br>搜索引擎对带有hash的页面不友好。<br>带有hash的页面内难以追踪用户行为。</p>
 <p>2.通过history实现前端路由<br>HTML5的history接口，history对象是一个底层接口，不继承任何接口，history接口允许我们操作浏览器会话历史记录。</p>
 <p>history的pushState和</p>
-<p>event loop<br>js是单线程的，所有的同步任务都会在主线程中执行<br>主线程之外，还有一个任务队列，每当有一个异步任务有了结果，就会往任务队列里塞一个事件<br>当主线程中的任务，都执行完之后，系统会依次读取任务队列里的事件，与之相应的异步任务进入主线程，开始执行。<br>异步任务之间，会存在差异，所以他们执行的优先级也会有区别。大致分为 微任务  比如 Promise MutationObserve 和 宏任务 比如 setTimeout setInterval I/O等 同一次事件循环中，微任务永远在宏任务之前执行<br>主线程会不断重复上面的步骤 知道执行完所有的任务</p>
-<p>css3中 transform: transslateZ(0) 的作用是： GPU加速，优化前端性能</p>
-<p>2.列举三种禁止浏览器缓存的头字段，并写出响应的设置值<br>  1）expires: 告诉浏览器把回送的资源缓存多长时间，-1或者0是不缓存。 简要： 添加Expires头能有效的利用浏览器的缓存能力来改善页面的性能，能在后续的页面中有效避免很多<br>  不必要的的http请求。web服务器使用expires头来告诉web客户端它可以使用一个组件的当前副本，知道指定的时间为止。<br>  例如：Expires：Thu，15 Apr 2010 20：00：00 GMT; 他告诉浏览器缓存有效性持续到2010年4月15日为止，在这个时间之内相同的请求使用缓存，这个时间之外使用http请求。<br>  2）Cache-Control：no-cache Cathe-Control：max-age=315360000<br>  3）Pragma：no-cache</p>
+<h3 id="event-loop"><a href="#event-loop" class="headerlink" title="event loop"></a>event loop</h3><p>js是单线程的，所有的同步任务都会在主线程中执行<br>主线程之外，还有一个任务队列，每当有一个异步任务有了结果，就会往任务队列里塞一个事件<br>当主线程中的任务，都执行完之后，系统会依次读取任务队列里的事件，与之相应的异步任务进入主线程，开始执行。<br>异步任务之间，会存在差异，所以他们执行的优先级也会有区别。大致分为 微任务  比如 Promise MutationObserve 和 宏任务 比如 setTimeout setInterval I/O等 同一次事件循环中，微任务永远在宏任务之前执行<br>主线程会不断重复上面的步骤 知道执行完所有的任务</p>
+<h3 id="css3中-transform-transslateZ-0-的作用是：-GPU加速，优化前端性能"><a href="#css3中-transform-transslateZ-0-的作用是：-GPU加速，优化前端性能" class="headerlink" title="css3中 transform: transslateZ(0) 的作用是： GPU加速，优化前端性能"></a>css3中 transform: transslateZ(0) 的作用是： GPU加速，优化前端性能</h3><p>2.列举三种禁止浏览器缓存的头字段，并写出响应的设置值<br>  1）expires: 告诉浏览器把回送的资源缓存多长时间，-1或者0是不缓存。 简要： 添加Expires头能有效的利用浏览器的缓存能力来改善页面的性能，能在后续的页面中有效避免很多<br>  不必要的的http请求。web服务器使用expires头来告诉web客户端它可以使用一个组件的当前副本，知道指定的时间为止。<br>  例如：Expires：Thu，15 Apr 2010 20：00：00 GMT; 他告诉浏览器缓存有效性持续到2010年4月15日为止，在这个时间之内相同的请求使用缓存，这个时间之外使用http请求。<br>  2）Cache-Control：no-cache Cathe-Control：max-age=315360000<br>  3）Pragma：no-cache</p>
 <p>3.精确获取页面元素位置的方式有哪些<br>getBoundingClientRect()方法</p>
 <p>再加上滚动和距离可以获得绝对为止。 document.documentElement.scrollLeft</p>
 <p>Array.from()  函数<br>用来将其他对象转换成数组，其他对象的要求是：<br>1、部署了iterator接口的对象，比如Set Map Array<br>2、类数组对象（有length属性）</p>
@@ -253,6 +256,80 @@
 <p>箭头函数一条语句返回对象字面量，需要加括号<br>箭头函数在参数和箭头之间不能换行<br>箭头函数的解析顺序相对||靠前</p>
 <p>不适用</p>
 <p>场景：箭头函数的this意外指向和代码的可读性。</p>
+<p>map会返回新的数组  forEach不会 filter也会返回新的数组</p>
+<hr>
+<h2 id="for-…-of"><a href="#for-…-of" class="headerlink" title="for … of"></a>for … of</h2><p>基本概念<br>迭代器：迭代器就是一个具有next()方法的对象，每次调用next()都会返回一个结果对象，该结果对象<br>有两个属性，value表示当前的值，done表示当前遍历是否结束。<br>一种数据只要部署了Iterator接口，我们就称这种数据结构是 可遍历的<br>ES6规定，默认的Iterator接口部署在数据结构的Symbol.iterator属性，一个数据结构只要具有Symbol.iterator属性，就可以认为是 可遍历的。</p>
+<blockquote>
+<p>默认部署Symbol.iterator属性</p>
+<ul>
+<li>数组</li>
+<li>Set</li>
+<li>Map</li>
+<li>类数组对象，如arguments对象 DOM NodeList对象</li>
+<li>Generator对象</li>
+<li>字符串</li>
+</ul>
+</blockquote>
+<h2 id="内建迭代器"><a href="#内建迭代器" class="headerlink" title="内建迭代器"></a>内建迭代器</h2><p>ES6为数组 Map Set集合内建了以下三种迭代器</p>
+<ol>
+<li>entries() 返回一个遍历器对象，用来遍历[键名、键值]组成的数组，对用户数组，键名就是索引值</li>
+<li>keys() 返回一个遍历器对象，用来遍历所有的键名</li>
+<li>values() 返回一个遍历器对象，用来遍历所有的键值。</li>
+</ol>
+<hr>
+<h3 id="Promise的局限性"><a href="#Promise的局限性" class="headerlink" title="Promise的局限性"></a>Promise的局限性</h3><ol>
+<li>错误被吃掉</li>
+<li>单一值</li>
+<li>无法取消：一旦执行 无法中途取消</li>
+<li>处于pendding状态时，无法得知目前进展到哪一阶段</li>
+</ol>
+<hr>
+<p>object.defineProperty 在数组中的表现和对象中表现一致，数组的索引可以看到做是对象中的key</p>
+<ol>
+<li>通过索引访问或者设置元素的值时，可以触发getter 和 setter方法</li>
+<li>通过push或unshift会增加索引，对于新增加的属性，需要再手动初始化才能被observe</li>
+<li>通过pop 活 shift 删除元素，会删除并更新索引，也会触发setter和getter方法</li>
+</ol>
+<p>object.defineProperty VS proxy</p>
+<ol>
+<li><p>object.degfineProperty  只能劫持对象的属性，而proxy是直接代理对象<br>只能对属性进行劫持，需要遍历对象的每个属性，如果属性值也是对象，则需要深度遍历，而proxy是直接代理对象，不需要遍历操作</p>
+</li>
+<li><p>object.defineProperty 对新增属性需要手动进行observe<br>由于 Object.defineProperty劫持的是对象的属性，所以新增属性时，需要重新遍历对象，对其新增属性再使用 Object.defineProperty 进行劫持。<br>总结</p>
+<ul>
+<li><p>Object.defineProperty 并非不能监控数组下标的变化，Vue2.x 中无法通过数组索引来实现响应式数据的自动更新是 Vue 本身的设计导致的，不是 defineProperty 的锅。</p>
+</li>
+<li><p>Object.defineProperty 和 Proxy 本质差别是，defineProperty 只能对属性进行劫持，所以出现了需要递归遍历，新增属性需要手动 Observe 的问题。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Proxy 作为新标准，浏览器厂商势必会对其进行持续优化，但它的兼容性也是块硬伤，并且目前还没有完整的 polyfill 方案。</p>
+<hr>
+<h3 id="JS中三种常见的事件绑定方法"><a href="#JS中三种常见的事件绑定方法" class="headerlink" title="JS中三种常见的事件绑定方法"></a>JS中三种常见的事件绑定方法</h3><ol>
+<li><p>DOM元素中直接绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;click me&quot; onclick=&quot;hello()&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function hello()&#123;</span><br><span class="line">	alert(&quot;hello world!&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在JS代码中绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;click me&quot; id=&quot;btn&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.getElementById(&quot;btn&quot;).onclick = function()&#123;</span><br><span class="line">	alert(&quot;hello world!&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绑定事件监听函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(event, function, useCapture)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中事件监听 W3C中定义了3个事件阶段，捕获阶段，目标阶段，冒泡阶段<br>事件监听的优点：</p>
+<ul>
+<li><p>可以绑定多个事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;click me&quot; id=&quot;btn3&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var btn3 = document.getElementById(&quot;btn3&quot;);</span><br><span class="line">btn3.onclick = function()&#123;</span><br><span class="line">	alert(&quot;hello 1&quot;); //不执行</span><br><span class="line">&#125;</span><br><span class="line">btn3.onclick = function()&#123;</span><br><span class="line">	alert(&quot;hello 2&quot;); //执行</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以解除相应的绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;click me&quot; id=&quot;btn5&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var btn5 = document.getElementById(&quot;btn5&quot;);</span><br><span class="line">btn5.addEventListener(&quot;click&quot;,hello1);//执行了</span><br><span class="line">btn5.addEventListener(&quot;click&quot;,hello2);//不执行</span><br><span class="line">btn5.removeEventListener(&quot;click&quot;,hello2);</span><br><span class="line">function hello1()&#123;</span><br><span class="line">	alert(&quot;hello 1&quot;);</span><br><span class="line">&#125;</span><br><span class="line">function hello2()&#123;</span><br><span class="line">	alert(&quot;hello 2&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>事件委托就是利用冒泡的原理，把事件加到父元素或祖先元素上，触发执行效果。<br>优点：</p>
+<ul>
+<li>提高js执行性能，提高事件的处理速度</li>
+<li>动态的添加DOM元素，不需要因为元素的改动而修改事件绑定</li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
