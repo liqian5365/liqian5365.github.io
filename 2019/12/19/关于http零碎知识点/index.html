@@ -190,11 +190,34 @@
 <li>获取服务器支持额HTTP请求方法，也是黑客经常使用的方法。</li>
 <li>用来检查服务器的性能，</li>
 </ol>
-
+<hr>
+<ol>
+<li>是否禁止缓存<br>是否禁止缓存，cache-control：no-store 和 Pragma: no-cache都可以禁止缓存<br>cache-control：no-store是http 1.1提供的，Pragma可以兼容到http1.0和1.1</li>
+<li>是否检查本地副本是否过期<br>cache-control 和 must-revalidate来控制<br>no-chache告诉浏览器、缓存服务器，不管本地副本是否过期，使用资源富本前，一定要到源服务器进行副本有效性校验<br>must-revalidate：告诉浏览器，缓存服务器，本地副本过期前，可以使用本地副本，本地副本一旦过期，必须去源服务器进行有效校验。</li>
+<li><p>本地副本是否过期<br>首先了解缓存的过期机制：</p>
+<ul>
+<li><p>max-age=<second>,表示资源能够被缓存的最大时间，经常会和must-revalidate一起使用。</second></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cache-contral: max-age=60, must-revalidate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不含max-age属性，则去查看是否包含expires属性，通过比较expires的值和头里面Date属性的值来判断是否缓存还有效。</p>
+</li>
+</ul>
+<hr>
+<h2 id="request-header-和-response-header"><a href="#request-header-和-response-header" class="headerlink" title="request header 和 response header"></a>request header 和 response header</h2></li>
+</ol>
+<p>  <img src="/images/http_1.png" alt="alt"></p>
+<p>  <img src="/images/http_2.png" alt="alt"></p>
+<pre><code>http协议格式
+![alt](/images/http_3.jpg)
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/12/26/CSS知识点集合/" style="float: left;">
+        ← CSS知识点集合
+    </a>
     
     
     <a class="pull-right" href="/2019/12/11/image/">

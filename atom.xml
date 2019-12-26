@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liqian5365.github.io/"/>
-  <updated>2019-12-19T08:11:33.169Z</updated>
+  <updated>2019-12-26T08:25:41.033Z</updated>
   <id>https://liqian5365.github.io/</id>
   
   <author>
@@ -17,13 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CSS知识点集合</title>
+    <link href="https://liqian5365.github.io/2019/12/26/CSS%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9B%86%E5%90%88/"/>
+    <id>https://liqian5365.github.io/2019/12/26/CSS知识点集合/</id>
+    <published>2019-12-26T03:45:22.000Z</published>
+    <updated>2019-12-26T08:25:41.033Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="CSS伪类和伪元素选择器"><a href="#CSS伪类和伪元素选择器" class="headerlink" title="CSS伪类和伪元素选择器"></a>CSS伪类和伪元素选择器</h3><p>伪类的出现是为了向某些选择器添加特殊的效果或限制，伪类是在正常的选择器后面加上伪类名称，中间用冒号（:）隔开，<br>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a: &#123;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">&#125;</span><br><span class="line">a: hover&#123;</span><br><span class="line">    text-decoration: underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>伪类的用处：标记一些特殊的状态，另一个是有筛选的功能</p><ol><li><p>标记状态的伪类</p><ul><li>:link  选择未访问过的链接</li><li>:visited  选取访问过的超链接元素</li><li>:hover 选择鼠标悬停的元素</li><li>:active 选取点钟的元素</li><li>:focus 选取获得焦点的元素</li></ul><ol start="2"><li>筛选功能的伪类<br>有些伪类有筛选的功能，可以根据元素的特点或者索引来给特定的元素加上样式，常用的有：</li></ol><ul><li>:empty</li><li>:checked</li><li>:diabled</li><li>:first-child</li><li>:last-child</li><li>:nth-child</li><li>:only-child 选取唯一子元素，如果一个父元素只有它一个子元素，这个伪类就会生效</li><li>:only-of-type</li></ul></li></ol><h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><p>  伪元素选择器是用于某些元素设置的特殊效果，选中的并不是真实的DOM<br>  ::first-line 必须出现在最内层的块级元素之内<br>  ::firsr-letter<br>  ::before<br>  ::after<br>  ::selection 对光标选中的元素添加样式</p><ol><li>伪元素选中的是虚拟的，不能用js去操作</li></ol><hr><p>  凡是替换型元素，都是使用src属性来引用文件。链接型元素使用href标签<br>  常见的替换型元素：img picture video audio iframe<br>  总结，替换型元素，特点是引入一个外部资源来进入页面，替换掉自身的位置<br>  不同资源的引入方式: src scrset source srcdoc</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;CSS伪类和伪元素选择器&quot;&gt;&lt;a href=&quot;#CSS伪类和伪元素选择器&quot; class=&quot;headerlink&quot; title=&quot;CSS伪类和伪元素选择器&quot;&gt;&lt;/a&gt;CSS伪类和伪元素选择器&lt;/h3&gt;&lt;p&gt;伪类的出现是为了向某些选择器添加特殊的效果或限制，伪类是在正
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>关于http零碎知识点</title>
     <link href="https://liqian5365.github.io/2019/12/19/%E5%85%B3%E4%BA%8Ehttp%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
     <id>https://liqian5365.github.io/2019/12/19/关于http零碎知识点/</id>
     <published>2019-12-19T08:00:21.000Z</published>
-    <updated>2019-12-19T08:11:33.169Z</updated>
+    <updated>2019-12-26T11:58:12.576Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="Request-Method-OPTIONS初窥CORS"><a href="#Request-Method-OPTIONS初窥CORS" class="headerlink" title="Request Method:OPTIONS初窥CORS"></a>Request Method:OPTIONS初窥CORS</h3><p>浏览器在某些请求中会在正式通信前会增加一次HTTP查询请求，也叫预检请求。浏览器先咨询服务器，当前网页所在的域名是否在服务器许可名单之中，以及<br>可以使用哪些HTTP动词和头信息字段，只有得到肯定的答复，浏览器才会发出正式的XMLHttpRequest请求，否则就会报错</p><p>OPTIONS请求方法的主要用途有两个：</p><ol><li>获取服务器支持额HTTP请求方法，也是黑客经常使用的方法。</li><li>用来检查服务器的性能，</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="Request-Method-OPTIONS初窥CORS"><a href="#Request-Method-OPTIONS初窥CORS" class="headerlink" title="Request Method:OPTIONS初窥CORS"></a>Request Method:OPTIONS初窥CORS</h3><p>浏览器在某些请求中会在正式通信前会增加一次HTTP查询请求，也叫预检请求。浏览器先咨询服务器，当前网页所在的域名是否在服务器许可名单之中，以及<br>可以使用哪些HTTP动词和头信息字段，只有得到肯定的答复，浏览器才会发出正式的XMLHttpRequest请求，否则就会报错</p><p>OPTIONS请求方法的主要用途有两个：</p><ol><li>获取服务器支持额HTTP请求方法，也是黑客经常使用的方法。</li><li>用来检查服务器的性能，</li></ol><hr><ol><li>是否禁止缓存<br>是否禁止缓存，cache-control：no-store 和 Pragma: no-cache都可以禁止缓存<br>cache-control：no-store是http 1.1提供的，Pragma可以兼容到http1.0和1.1</li><li>是否检查本地副本是否过期<br>cache-control 和 must-revalidate来控制<br>no-chache告诉浏览器、缓存服务器，不管本地副本是否过期，使用资源富本前，一定要到源服务器进行副本有效性校验<br>must-revalidate：告诉浏览器，缓存服务器，本地副本过期前，可以使用本地副本，本地副本一旦过期，必须去源服务器进行有效校验。</li><li><p>本地副本是否过期<br>首先了解缓存的过期机制：</p><ul><li><p>max-age=<second>,表示资源能够被缓存的最大时间，经常会和must-revalidate一起使用。</second></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cache-contral: max-age=60, must-revalidate</span><br></pre></td></tr></table></figure></li><li><p>如果不含max-age属性，则去查看是否包含expires属性，通过比较expires的值和头里面Date属性的值来判断是否缓存还有效。</p></li></ul><hr><h2 id="request-header-和-response-header"><a href="#request-header-和-response-header" class="headerlink" title="request header 和 response header"></a>request header 和 response header</h2></li></ol><p>  <img src="/images/http_1.png" alt="alt"></p><p>  <img src="/images/http_2.png" alt="alt"></p><pre><code>http协议格式![alt](/images/http_3.jpg)</code></pre>]]></content>
     
     <summary type="html">
     
